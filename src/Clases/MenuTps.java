@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.random.*;
 
 public class MenuTps {
 
@@ -162,6 +163,30 @@ public class MenuTps {
 
                 case 17:
                     pitagoras();
+                    break;
+
+                case 18:
+                    leerDatosArregloTemperatura();
+                    break;
+
+                case 19:
+                    generar10NumerosRandom();
+                    break;
+
+                case 20:
+                    swichDiaSemana();
+                    break;
+
+                case 21:
+                    contadorCantidadDigitos ();
+                    break;
+
+                case 22:
+                    CalculadoraPolacaInversaApp();
+                    break;
+
+                case 23:
+                    calculoSalarioPorEdad();
                     break;
 
                 default:
@@ -520,6 +545,277 @@ public class MenuTps {
         double longitudHipotenusa = Math.sqrt(Math.pow(baseTriangulo, 2) + Math.pow(alturaTriangulo, 2));
 
         System.out.println("Su hipotenusa es: " + String.format("%.2f", longitudHipotenusa));
+    }
+
+    public float[] cargarArregloTemperaturaRandom() {
+
+        float[] arregloTemperaturasMes = new float[30];
+        Random numeroRandom = new Random();
+
+        for (int i = 0; i < 30; i++) {
+            arregloTemperaturasMes[i] = numeroRandom.nextFloat(0, 42);
+        }
+        System.out.println(" ");
+        return arregloTemperaturasMes;
+    }
+
+    public void mostrarArregloTemperaturas(float[] arregloTemperaturas) {
+
+        for (int i = 0; i < 30; i++) {
+            System.out.print(String.format("%.2f", arregloTemperaturas[i]) + " °C | ");
+        }
+    }
+
+    public float maximoArregloTemperatura(float[] arregloTemperatura) {
+
+        float temperaturaMaxima = arregloTemperatura[0];
+
+        for (int i = 0; i < 30; i++) {
+            if (arregloTemperatura[i] > temperaturaMaxima) {
+                temperaturaMaxima = arregloTemperatura[i];
+            }
+        }
+        return temperaturaMaxima;
+    }
+
+    public float minimoArregloTemperatura(float[] arregloTemperatura) {
+
+        float temperaturaMinima = arregloTemperatura[0];
+
+        for (int i = 0; i < 30; i++) {
+            if (arregloTemperatura[i] < temperaturaMinima) {
+                temperaturaMinima = arregloTemperatura[i];
+            }
+        }
+        return temperaturaMinima;
+    }
+
+    public float promedioArregloTemperaturas(float[] arregloTemperaturas) {
+
+        float sumaTemperaturas = 0;
+
+        for (int i = 0; i < 30; i++) {
+            sumaTemperaturas += arregloTemperaturas[i];
+        }
+
+        return sumaTemperaturas / 30;
+    }
+
+    public void leerDatosArregloTemperatura() {
+
+        float[] arregloTemperaturas = new float[30];
+
+        arregloTemperaturas = cargarArregloTemperaturaRandom();
+        mostrarArregloTemperaturas(arregloTemperaturas);
+        float maximaTemperatura = maximoArregloTemperatura(arregloTemperaturas);
+        float minimoTemperatura = minimoArregloTemperatura(arregloTemperaturas);
+        float promedioTemperaturas = promedioArregloTemperaturas(arregloTemperaturas);
+
+        System.out.println("Su temperatura maxima es: " + String.format("%.2f", maximaTemperatura) + " °C");
+        System.out.println("Su temperatura minima es: " + String.format("%.2f", minimoTemperatura) + " °C");
+        System.out.println("Su temperatura promedio es: " + String.format("%.2f", promedioTemperaturas) + " °C");
+    }
+
+    public void generar10NumerosRandom() {
+
+        int[] arreglo10Numeros = new int[10];
+
+        System.out.print("Ingrese el numero mas bajo: ");
+        int numeroMinimo = scanner.nextInt();
+
+        System.out.print("Ingrese el numero mas grande: ");
+        int numeroMaximo = scanner.nextInt();
+
+        for (int i = 0; i < 10; i++) {
+            arreglo10Numeros[i] = (int) Math.floor(Math.random() * (numeroMaximo - numeroMinimo + 1) + numeroMinimo);
+        }
+
+        System.out.println("Sus 10 numeros random son: ");
+        for (int i = 0; i < 10; i++) {
+            System.out.print(arreglo10Numeros[i] + " | ");
+        }
+        System.out.println(" ");
+    }
+
+    public void swichDiaSemana() {
+
+        System.out.print("Ingrese el dia de la semana: ");
+        String diaSemana = scanner.next().toLowerCase();
+
+        switch (diaSemana) {
+            case "lunes", "martes", "miercoles", "jueves", "viernes":
+                System.out.println("El dia " + diaSemana + " es dia laboral");
+                break;
+            case "sabado", "domingo":
+                System.out.println("El dia " + diaSemana + " no es laboral");
+                break;
+            default:
+                System.out.println("El dia " + diaSemana + " no es un dia de la semana");
+                break;
+        }
+    }
+
+    public int validarEnteroYPositivo() {
+
+        int numero = 0;
+
+        do {
+            System.out.print("Ingrese un numero: ");
+
+            while (!scanner.hasNextInt()) {
+                String dato = scanner.next();
+                System.out.println(dato + " no es un dato valido ingrese otro numero");
+            }
+            numero = scanner.nextInt();
+        } while (numero < 0);
+
+        return numero;
+    }
+
+    public void contadorCantidadDigitos (){
+
+        int numero = validarEnteroYPositivo();
+
+        String numeroEnString = String.valueOf(numero);
+        int cantidadDigitosString = numeroEnString.length();
+
+        System.out.println("La cantidad de digitos que tiene " + numero + " es: " + cantidadDigitosString);
+    }
+
+    public int validarNumeroEntero(){
+
+        while (!scanner.hasNextInt()){
+            String dato = scanner.next();
+            System.out.println(dato + " no es un dato valido ingrese otro numero");
+        }
+        int numero = scanner.nextInt();
+
+        return numero;
+    }
+
+    public void CalculadoraPolacaInversaApp(){
+        int opcion = 0;
+
+        do {
+
+            System.out.print("Ingrese primer numero: ");
+            int numero1 = validarNumeroEntero();
+            System.out.print("Ingrese segundo numero: ");
+            int numero2 = validarNumeroEntero();
+
+            System.out.print("Ingrese el operador de la operacion que desea realizar (+, -, *, /, ^, %): ");
+            String operadorCalculadora = scanner.next();
+
+            switch (operadorCalculadora){
+
+                case "+":
+                    sumaNumerosEnteros(numero1, numero2);
+                    break;
+                case "-":
+                    restaNumerosEnteros(numero1, numero2);
+                    break;
+                case "*":
+                    multiplicacionNumerosEnteros(numero1, numero2);
+                    break;
+                case "/":
+                    divicionNumerosEnteros(numero1, numero2);
+                    break;
+                case "^":
+                    potenciaNumerosEnteros(numero1, numero2);
+                    break;
+                case "%":
+                    moduloNumerosEnteros(numero1, numero2);
+                    break;
+                default:
+                    System.out.println("Este operador: " + operadorCalculadora + " no existe");
+                    break;
+            }
+
+            System.out.print("Desea realizar otra operacion? 1.Si - 2.No ");
+            opcion = scanner.nextInt();
+
+        }while(opcion == 1);
+    }
+
+    public void sumaNumerosEnteros(int numero1, int numero2){
+
+        int suma = numero1 + numero2;
+
+        System.out.println(numero1 + " + " + numero2 + " = " + suma);
+    }
+
+    public void restaNumerosEnteros(int numero1, int numero2){
+
+        int suma = numero1 - numero2;
+
+        System.out.println(numero1 + " - " + numero2 + " = " + suma);
+    }
+
+    public void multiplicacionNumerosEnteros(int numero1, int numero2){
+
+        int suma = numero1 * numero2;
+
+        System.out.println(numero1 + " * " + numero2 + " = " + suma);
+    }
+
+    public void divicionNumerosEnteros(int numero1, int numero2){
+
+        double divicion = (double)numero1 / (double)numero2;
+
+        System.out.println(numero1 + " / " + numero2 + " = " + divicion);
+    }
+
+    public void potenciaNumerosEnteros(int numero1, int numero2){
+
+        double potencia = Math.pow(numero1,numero2);
+
+        System.out.println(numero1 + " ^ " + numero2 + " = " + potencia);
+    }
+
+    public void moduloNumerosEnteros(int numero1, int numero2){
+
+        int resto = numero1 % numero2;
+
+        System.out.println(numero1 + " % " + numero2 + " el resto es: " + resto);
+    }
+
+    public void calculoSalarioPorEdad(){
+        double bonoDinero = 0, salarioFinal = 0;
+
+
+        System.out.print("Ingrese su nombre: ");
+        String nombreUsuario = scanner.next();
+
+        System.out.print("Ingrese su edad: ");
+        int edadUsuario = validarNumeroEntero();
+
+        System.out.print("Ingrese su salario: ");
+        double salarioUsuario = scanner.nextDouble();
+        
+        if (edadUsuario < 16){
+            System.out.println("No tiene edad valida para trabajar, por ende no tiene salario.");
+        } else if ((19 <= edadUsuario) && (edadUsuario <= 50)) {
+
+            bonoDinero = (5 * salarioUsuario) / 100;
+            salarioFinal = salarioUsuario + bonoDinero;
+
+            System.out.println(nombreUsuario + " su salario es de: " + salarioFinal);
+
+        } else if ((51 <= edadUsuario) && (edadUsuario <= 60)) {
+
+            bonoDinero = (10 * salarioUsuario) / 100;
+            salarioFinal = salarioUsuario + bonoDinero;
+
+            System.out.println(nombreUsuario + " su salario es de: " + salarioFinal);
+
+        } else {
+
+            bonoDinero = (15 * salarioUsuario) / 100;
+            salarioFinal = salarioUsuario + bonoDinero;
+
+            System.out.println(nombreUsuario + " su salario es de: " + salarioFinal);
+
+        }
     }
     //endregion
 
