@@ -136,6 +136,34 @@ public class MenuTps {
                     mutiplicarDosNumeros();
                     break;
 
+                case 11:
+                    menuAreas();
+                    break;
+
+                case 12:
+                    mostrarNombre();
+                    break;
+
+                case 13:
+                    mostrarDobleYTriple();
+                    break;
+
+                case 14:
+                    pasajeDeCentigradosAFahrenheit();
+                    break;
+
+                case 15:
+                    longitudYAreaCircunferencia();
+                    break;
+
+                case 16:
+                    kilometrosAMetros();
+                    break;
+
+                case 17:
+                    pitagoras();
+                    break;
+
                 default:
                     System.out.println("Opcion incorrecta");
                     break;
@@ -273,13 +301,13 @@ public class MenuTps {
             System.out.println("Desea probar otro numero? 1.Si 2.No");
             continuar = scanner.nextInt();
 
-        }while (continuar == 1);
+        } while (continuar == 1);
     }
 
-    public void sumaNumeroNaturales (){
+    public void sumaNumeroNaturales() {
         int numero = 0;
 
-        for (int i=0; i<=10; i++){
+        for (int i = 0; i <= 10; i++) {
             numero += i;
         }
 
@@ -287,16 +315,16 @@ public class MenuTps {
         System.out.println(" ");
     }
 
-    public void cantidadNumerosPositivosDelUsarios(){
+    public void cantidadNumerosPositivosDelUsarios() {
         int contadorNumerosPositivos = 0;
         int opcion = 0;
         int numero = 0;
 
-        do{
+        do {
             System.out.print("Ingrese numero: ");
             numero = scanner.nextInt();
 
-            if (numero > 0){
+            if (numero > 0) {
                 contadorNumerosPositivos++;
             }
 
@@ -305,75 +333,194 @@ public class MenuTps {
 
         } while (opcion == 1);
 
-        System.out.println("La cantidad de numeros positivos ingresados fue: "+ contadorNumerosPositivos);
+        System.out.println("La cantidad de numeros positivos ingresados fue: " + contadorNumerosPositivos);
     }
 
-public void añoBiciesto(){
+    public void añoBiciesto() {
         int año = 0;
 
-    System.out.print("Ingrese el año que desea ver si es biciesto: ");
-    año = scanner.nextInt();
+        System.out.print("Ingrese el año que desea ver si es biciesto: ");
+        año = scanner.nextInt();
 
-    if (año % 4 == 0){
-        System.out.println("El año es biciesto");
-    } else {
-        System.out.println("El año no es biciesto");
-    }
-}
-
-public void valorEnASCIIDelCaracter(){
-
-    System.out.println("Ingrese el caracter que desea ver su ASCII: ");
-    char caracter = scanner.next().charAt(0);
-
-    System.out.println("El valor en ASCII del character es: " + (int)caracter);
-}
-
-public void mutiplicarDosNumeros(){
-
-    System.out.print("Ingrese el primer numero que desea multiplicar: ");
-    int numero1 = scanner.nextInt();
-
-    System.out.print("Ingrese el segundo: ");
-    int numero2 = scanner.nextInt();
-
-    int resultadoMultiplicacion = numero1 * numero2;
-
-    System.out.println(numero1 + " * " + numero2 + " = " + resultadoMultiplicacion);
-}
-
-public void menuAreas (){
-        int opcion = 0;
-
-        switch (opcion){
-            case 1:
-                areaDeRectangulo();
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            default:
-                System.out.println("Opcion incorrecta");
-                break;
+        if (año % 4 == 0) {
+            System.out.println("El año es biciesto");
+        } else {
+            System.out.println("El año no es biciesto");
         }
-}
+    }
 
-public void areaDeRectangulo(){
+    public void valorEnASCIIDelCaracter() {
 
-    System.out.println("Para poder calcular el area del rectangulo usted tiene que tener 2 lados del rectangulo.");
-    System.out.print("Ingrese el primer lado del rectangulo: ");
-    int lado1Rectangulo = scanner.nextInt();
+        System.out.println("Ingrese el caracter que desea ver su ASCII: ");
+        char caracter = scanner.next().charAt(0);
 
-    System.out.print("Ingrese el segundo lado del rectangulo: ");
-    int lado2Rectangulo = scanner.nextInt();
+        System.out.println("El valor en ASCII del character es: " + (int) caracter);
+    }
 
-    int areaRectangulo = lado1Rectangulo * lado2Rectangulo;
+    public void mutiplicarDosNumeros() {
 
-    System.out.print("Su rectangulo con lado 1: " + lado1Rectangulo + "lado 2: " + lado2Rectangulo + "tiene un area de: " + areaRectangulo);
-}
+        System.out.print("Ingrese el primer numero que desea multiplicar: ");
+        int numero1 = scanner.nextInt();
+
+        System.out.print("Ingrese el segundo: ");
+        int numero2 = scanner.nextInt();
+
+        int resultadoMultiplicacion = numero1 * numero2;
+
+        System.out.println(numero1 + " * " + numero2 + " = " + resultadoMultiplicacion);
+    }
+
+    public void menuAreas() {
+        int opcion = 0;
+        int continuar = 1;
+
+        do {
+            System.out.println("Areas:");
+            System.out.println("1.Reactangulo.");
+            System.out.println("2.Cuadrado.");
+            System.out.println("3.Triangulo.");
+            System.out.println("4.Circulo.");
+            opcion = scanner.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    areaDeRectangulo();
+                    break;
+                case 2:
+                    areaDeCuadrado();
+                    break;
+                case 3:
+                    areaTriangulo();
+                    break;
+                case 4:
+                    areaCirculo();
+                    break;
+                default:
+                    System.out.println("Opcion incorrecta");
+                    break;
+            }
+
+            System.out.println("Desea calcular otra area? 1.Si - 2.No");
+            continuar = scanner.nextInt();
+
+        } while (continuar == 1);
+    }
+
+    public void areaDeRectangulo() {
+
+        System.out.println("Para poder calcular el area del rectangulo usted tiene que tener 2 lados del rectangulo.");
+        System.out.print("Ingrese el primer lado del rectangulo: ");
+        int lado1Rectangulo = scanner.nextInt();
+
+        System.out.print("Ingrese el segundo lado del rectangulo: ");
+        int lado2Rectangulo = scanner.nextInt();
+
+        int areaRectangulo = lado1Rectangulo * lado2Rectangulo;
+
+        System.out.println("Su rectangulo con lado 1: " + lado1Rectangulo + " lado 2: " + lado2Rectangulo + " tiene un area de: " + areaRectangulo);
+    }
+
+    public void areaDeCuadrado() {
+
+        System.out.println("Para poder calcular el area del cuadrado usted tiene que tener 2 lados iguales");
+        System.out.print("Ingrese el lado valor del lado del cuadrado: ");
+        int ladoCuadrado = scanner.nextInt();
+
+        int areaCuadrado = ladoCuadrado * ladoCuadrado;
+
+        System.out.println("Su cuadrado de lado: " + ladoCuadrado + " tiene un area de: " + areaCuadrado);
+    }
+
+    public void areaTriangulo() {
+
+        System.out.println("Para poder calcular el area del triangulo usted tiene que tener una base y una altura");
+        System.out.print("Ingrese el valor de la altura del triangulo: ");
+        int alturaTriangulo = scanner.nextInt();
+
+        System.out.print("Ingrese el valor de la base del triangulo: ");
+        int baseTriangulo = scanner.nextInt();
+
+        int areaTriangulo = alturaTriangulo * baseTriangulo;
+
+        System.out.println("Su triangulo de base: " + baseTriangulo + " y altura: " + alturaTriangulo + " tiene un area de: " + areaTriangulo);
+    }
+
+    public void areaCirculo() {
+
+        System.out.println("Para sacar el area de su circulo necesitamos un radio");
+        System.out.print("Ingrese el radio del circulo: ");
+        double radioCirculo = scanner.nextDouble();
+
+        double areaCirculo = (Math.PI * (Math.pow(radioCirculo, 2)));
+
+        System.out.println("Su ciruclo con radio de: " + radioCirculo + " tiene un area de: " + areaCirculo);
+    }
+
+    public void mostrarNombre() {
+
+        System.out.print("Ingrese su nombre: ");
+        String nombreUsuario = scanner.next();
+
+        System.out.println("Buenos dias " + nombreUsuario);
+    }
+
+    public void mostrarDobleYTriple() {
+
+        System.out.print("Ingrese numero entero: ");
+        int numero = scanner.nextInt();
+
+        int dobleNumero = (numero * 2);
+        int tripleNumero = (numero * 3);
+
+        System.out.println("El doble de " + numero + " es: " + dobleNumero + " y el triple es: " + tripleNumero);
+    }
+
+    public void pasajeDeCentigradosAFahrenheit() {
+
+        System.out.print("Ingrese los grados centrigrados que desea convertir: ");
+        float centigrados = scanner.nextFloat();
+
+        float fahrenheit = (32) + ((9 * centigrados) / 5);
+
+        System.out.println("Su temperatura de " + centigrados + " °C en °F es: " + fahrenheit);
+    }
+
+    public void longitudYAreaCircunferencia() {
+
+        System.out.print("Ingrese el radio de su circunferencia: ");
+        float radioCircunferencia = scanner.nextFloat();
+
+        double longitudCircunferencia = (2 * Math.PI * radioCircunferencia);
+        double areaCircunferencia = (Math.PI * Math.pow(radioCircunferencia, 2));
+
+        System.out.println("El perimetro de su circulo es: " + areaCircunferencia);
+        System.out.println("La longitud de la circunferencia es: " + String.format("%.2f", longitudCircunferencia));
+        System.out.println("El area de la circunferencia es: " + String.format("%.2f", areaCircunferencia));
+    }
+
+    public void kilometrosAMetros() {
+
+        System.out.println("Ingrese su velocidad en kilometros sobre hora: ");
+        float velocidadKilometro = scanner.nextFloat();
+
+        double velocidadMetros = (velocidadKilometro * 0.27);
+
+        System.out.println("Su velocidad de " + velocidadKilometro + " k/h equivale: " + velocidadMetros + " m/s");
+    }
+
+    public void pitagoras() {
+
+        System.out.println("Para calcular su hipotenusa necesitamos 2 lados, altura y base");
+        System.out.print("Ingrese la base de su triagulo rectangulo: ");
+        float baseTriangulo = scanner.nextFloat();
+
+        System.out.print("Ingrese la altura de su triangulo rectangulo: ");
+        float alturaTriangulo = scanner.nextFloat();
+
+        double longitudHipotenusa = Math.sqrt(Math.pow(baseTriangulo, 2) + Math.pow(alturaTriangulo, 2));
+
+        System.out.println("Su hipotenusa es: " + String.format("%.2f", longitudHipotenusa));
+    }
     //endregion
 
     //endregion
