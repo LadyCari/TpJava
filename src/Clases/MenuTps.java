@@ -1,3 +1,6 @@
+import Clases.CuentaBancaria;
+import Clases.Vuelo;
+
 import java.util.*;
 import java.util.random.*;
 
@@ -12,6 +15,7 @@ public class MenuTps {
 
         System.out.println("Seleccione el Trabajo practico:");
         System.out.println("1. Tp1");
+        System.out.println("2. Tp2");
 
         int opcion = scanner.nextInt();
 
@@ -21,6 +25,7 @@ public class MenuTps {
                     menutp1();
                     break;
                 case 2:
+                    menuTp2();
                     break;
                 default:
                     System.out.println("Opcion incorrecta");
@@ -178,7 +183,7 @@ public class MenuTps {
                     break;
 
                 case 21:
-                    contadorCantidadDigitos ();
+                    contadorCantidadDigitos();
                     break;
 
                 case 22:
@@ -672,7 +677,7 @@ public class MenuTps {
         return numero;
     }
 
-    public void contadorCantidadDigitos (){
+    public void contadorCantidadDigitos() {
 
         int numero = validarEnteroYPositivo();
 
@@ -682,9 +687,9 @@ public class MenuTps {
         System.out.println("La cantidad de digitos que tiene " + numero + " es: " + cantidadDigitosString);
     }
 
-    public int validarNumeroEntero(){
+    public int validarNumeroEntero() {
 
-        while (!scanner.hasNextInt()){
+        while (!scanner.hasNextInt()) {
             String dato = scanner.next();
             System.out.println(dato + " no es un dato valido ingrese otro numero");
         }
@@ -693,7 +698,7 @@ public class MenuTps {
         return numero;
     }
 
-    public void CalculadoraPolacaInversaApp(){
+    public void CalculadoraPolacaInversaApp() {
         int opcion = 0;
 
         do {
@@ -706,7 +711,7 @@ public class MenuTps {
             System.out.print("Ingrese el operador de la operacion que desea realizar (+, -, *, /, ^, %): ");
             String operadorCalculadora = scanner.next();
 
-            switch (operadorCalculadora){
+            switch (operadorCalculadora) {
 
                 case "+":
                     sumaNumerosEnteros(numero1, numero2);
@@ -734,52 +739,52 @@ public class MenuTps {
             System.out.print("Desea realizar otra operacion? 1.Si - 2.No ");
             opcion = scanner.nextInt();
 
-        }while(opcion == 1);
+        } while (opcion == 1);
     }
 
-    public void sumaNumerosEnteros(int numero1, int numero2){
+    public void sumaNumerosEnteros(int numero1, int numero2) {
 
         int suma = numero1 + numero2;
 
         System.out.println(numero1 + " + " + numero2 + " = " + suma);
     }
 
-    public void restaNumerosEnteros(int numero1, int numero2){
+    public void restaNumerosEnteros(int numero1, int numero2) {
 
         int suma = numero1 - numero2;
 
         System.out.println(numero1 + " - " + numero2 + " = " + suma);
     }
 
-    public void multiplicacionNumerosEnteros(int numero1, int numero2){
+    public void multiplicacionNumerosEnteros(int numero1, int numero2) {
 
         int suma = numero1 * numero2;
 
         System.out.println(numero1 + " * " + numero2 + " = " + suma);
     }
 
-    public void divicionNumerosEnteros(int numero1, int numero2){
+    public void divicionNumerosEnteros(int numero1, int numero2) {
 
-        double divicion = (double)numero1 / (double)numero2;
+        double divicion = (double) numero1 / (double) numero2;
 
         System.out.println(numero1 + " / " + numero2 + " = " + divicion);
     }
 
-    public void potenciaNumerosEnteros(int numero1, int numero2){
+    public void potenciaNumerosEnteros(int numero1, int numero2) {
 
-        double potencia = Math.pow(numero1,numero2);
+        double potencia = Math.pow(numero1, numero2);
 
         System.out.println(numero1 + " ^ " + numero2 + " = " + potencia);
     }
 
-    public void moduloNumerosEnteros(int numero1, int numero2){
+    public void moduloNumerosEnteros(int numero1, int numero2) {
 
         int resto = numero1 % numero2;
 
         System.out.println(numero1 + " % " + numero2 + " el resto es: " + resto);
     }
 
-    public void calculoSalarioPorEdad(){
+    public void calculoSalarioPorEdad() {
         double bonoDinero = 0, salarioFinal = 0;
 
 
@@ -791,8 +796,8 @@ public class MenuTps {
 
         System.out.print("Ingrese su salario: ");
         double salarioUsuario = scanner.nextDouble();
-        
-        if (edadUsuario < 16){
+
+        if (edadUsuario < 16) {
             System.out.println("No tiene edad valida para trabajar, por ende no tiene salario.");
         } else if ((19 <= edadUsuario) && (edadUsuario <= 50)) {
 
@@ -816,6 +821,119 @@ public class MenuTps {
             System.out.println(nombreUsuario + " su salario es de: " + salarioFinal);
 
         }
+    }
+    //endregion
+
+    //endregion
+
+    //region tp2
+
+    public void menuTp2() {
+
+        int ejercicio = 0;
+        int continuar = 0;
+
+        do {
+
+            //region consignas tp2
+            System.out.println("TP2:");
+            System.out.println("Ingrese el ejercicio que desea: ");
+            System.out.println("1.Crea una clase CuentaBancaria con atributos saldo y titular. Debe tener métodos para depositar y retirar dinero de la cuenta y para consultar el saldo actual. Además, la clase debe permitir la posibilidad de establecer un plazo fijo. El método encargado debe mostrar cuánto quedaría el monto total con intereses que podremos retirar en 30 días.");
+            System.out.println("2.Crea una clase Vuelo con atributos origen, destino, horaSalida y horaLlegada. La clase debe tener métodos para mostrar la información del vuelo y para calcular la duración del mismo.");
+            System.out.println("3. rea una clase Agenda. Debe permitir que se agreguen, modifiquen y eliminen contactos. Cada contacto debe tener un nombre, un número de teléfono y una dirección de correo electrónico. Además, la aplicación debe tener una función de búsqueda que permita buscar contactos por nombre. Pista: Se debe utilizar más de una clase.");
+            System.out.println("4.Crea una clase Estudiante con atributos nombre, edad, materiasAprobadas (materia es otra clase con nombre, cargaHoraria y profesor. Este último como un String) y promedio. La clase debe permitir que se le agreguen nuevas");
+            System.out.println("4.Crea una clase Estudiante con atributos nombre, edad, materiasAprobadas (materia es otra clase con nombre, cargaHoraria y profesor. Este último como un String) y promedio. La clase debe permitir que se le agreguen nuevas materias aprobadas y debe tener un método para calcular el promedio actual del estudiante.");
+            System.out.println("5.Crea una clase Producto que tenga los atributos código, descripción, stock, precio y añoVencimiento. Luego crear una clase Gestión que posee una lista (arreglo) de productos. Con esta clase se debe poder comprar o vender productos, es decir, agregar o quitar del stock. También debe tener un método que busque al producto por su código y otro que avise si el producto está vencido o vence en este año. Aclaración: Como todavía no vimos persistencia de datos se deben “hardcodear” los productos y la lista de ellos dentro de la clase gestión.");
+            //endregion
+
+            ejercicio = scanner.nextInt();
+
+            switch (ejercicio) {
+                case 1:
+                    cuentaBancaria();
+                    break;
+                case 2:
+                    vuelos();
+                    break;
+                default:
+                    System.out.println("Opcion incorrecta");
+                    break;
+            }
+
+            System.out.println("Desea realizar otro ejercicio? 1.Si 2.No");
+            continuar = scanner.nextInt();
+
+        } while (continuar == 1);
+
+        scanner.close();
+    }
+
+    //region metodostp2
+    public void cuentaBancaria() {
+        int opcion = 0;
+        int continuar = 0;
+
+        System.out.print("Ingrese su nombre: ");
+        String nombreTitular = scanner.next();
+
+        System.out.print("Ingrese su salario: $");
+        double salarioTitular = scanner.nextDouble();
+
+        CuentaBancaria usuario = new CuentaBancaria(salarioTitular, nombreTitular);
+
+        do {
+            System.out.println("Bievenido " + nombreTitular + " eliga la operacion que desea realizar:");
+            System.out.println("1.Retirar dinero.");
+            System.out.println("2.Depositar dinero.");
+            System.out.println("3.Consultar salario.");
+            System.out.println("4.Ganancia de plazo fijo.");
+
+            opcion = validarNumeroEntero();
+
+            switch (opcion) {
+
+                case 1:
+                    usuario.retirarDinero();
+                    break;
+                case 2:
+                    usuario.depositoDinero();
+                    break;
+                case 3:
+                    usuario.consultaSalario();
+                    break;
+                case 4:
+                    usuario.plazoFijo();
+                    break;
+                default:
+                    System.out.println("Opcion incorrecta.");
+                    break;
+            }
+
+            System.out.println(nombreTitular + " desea realizar otra operacion? 1.Si - 2.No");
+            continuar = scanner.nextInt();
+
+        } while (continuar == 1);
+    }
+
+    public void vuelos() {
+
+        Vuelo nuevoViaje = new Vuelo();
+
+        System.out.print("Ingrese el origen del vuelo: ");
+        nuevoViaje.setOrigen(scanner.next());
+
+        System.out.print("Ingrese el destino del vuelo: ");
+        nuevoViaje.setDestino(scanner.next());
+
+        System.out.print("Ingrese el horario de partida: ");
+        nuevoViaje.setHoraDeSalida(scanner.nextInt());
+
+        System.out.print("Ingre el horario de llegada: ");
+        nuevoViaje.setHoraDeLlegada(scanner.nextInt());
+
+        nuevoViaje.informacionVuelo();
+
+        nuevoViaje.calcularTiempoDeViaje();
     }
     //endregion
 
