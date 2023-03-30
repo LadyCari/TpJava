@@ -1,5 +1,7 @@
 import Clases.CuentaBancaria;
 import Clases.Vuelo;
+import Clases.Agenda;
+
 
 import java.util.*;
 import java.util.random.*;
@@ -833,6 +835,8 @@ public class MenuTps {
         int ejercicio = 0;
         int continuar = 0;
 
+        Agenda agendita = new Agenda();
+
         do {
 
             //region consignas tp2
@@ -854,6 +858,9 @@ public class MenuTps {
                     break;
                 case 2:
                     vuelos();
+                    break;
+                case 3:
+                    agendita.menuAgenda();
                     break;
                 default:
                     System.out.println("Opcion incorrecta");
