@@ -1,6 +1,4 @@
-import Clases.CuentaBancaria;
-import Clases.Vuelo;
-import Clases.Agenda;
+import Clases.*;
 
 
 import java.util.*;
@@ -862,6 +860,10 @@ public class MenuTps {
                 case 3:
                     agendita.menuAgenda();
                     break;
+                case 4:
+                    Estudiante estudianteAux = hardCodeoEstudiante();
+                    estudianteAux.menuEstudiante();
+                    break;
                 default:
                     System.out.println("Opcion incorrecta");
                     break;
@@ -941,6 +943,21 @@ public class MenuTps {
         nuevoViaje.informacionVuelo();
 
         nuevoViaje.calcularTiempoDeViaje();
+    }
+
+    public Estudiante hardCodeoEstudiante(){
+
+        Materia materia1 = new Materia("Lengua", 4, "Fernandez", 7);
+        Materia materia2 = new Materia("Matematica", 2, "Mendez", 8);
+        Materia materia3 = new Materia("Informatica", 3, "Perez", 9);
+
+        Estudiante alumno = new Estudiante("Maria", 15);
+
+        alumno.agregarMateriasALista(materia1);
+        alumno.agregarMateriasALista(materia2);
+        alumno.agregarMateriasALista(materia3);
+
+        return alumno;
     }
     //endregion
 

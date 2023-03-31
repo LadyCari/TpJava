@@ -62,6 +62,7 @@ public class Agenda {
 
         } while (continuar == 1);
 
+        sc.close();
     }
 
     //region metodos
@@ -83,7 +84,7 @@ public class Agenda {
 
     }
 
-    public void menuModificarContacto(ContactoAgenda contacto){
+    public void menuModificarContacto(ContactoAgenda contacto) {
 
         System.out.println("Que desea modificar de " + contacto.getNombre());
         mostrarContacto(contacto);
@@ -96,7 +97,7 @@ public class Agenda {
 
         int opcion = sc.nextInt();
 
-        switch (opcion){
+        switch (opcion) {
             case 1:
                 System.out.print("Ingrese nombre: ");
                 contacto.setNombre(sc.next());
@@ -154,7 +155,7 @@ public class Agenda {
         ContactoAgenda contactoAux = null;
 
         for (ContactoAgenda contac : this.listaContactos) {
-            if(listaContactos == null){
+            if (listaContactos == null) {
                 System.out.println("vacia");
             }
             if (contac.getNombre().equalsIgnoreCase(nombreContacto)) {
@@ -165,11 +166,11 @@ public class Agenda {
         return contactoAux;
     }
 
-public void mostrarLista (){
-        for(ContactoAgenda contactoAux : listaContactos){
+    public void mostrarLista() {
+        for (ContactoAgenda contactoAux : listaContactos) {
             mostrarContacto(contactoAux);
         }
-}
+    }
     //endregion
 
 }
