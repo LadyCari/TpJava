@@ -10,14 +10,16 @@ public class ContactoAgenda {
 
     //region constructores
 
+
     public ContactoAgenda() {
     }
 
-    public ContactoAgenda(String nombreContacto, int numeroContacto, String emailContacto) {
-        this.nombre = nombreContacto;
-        this.numero = numeroContacto;
-        this.email = emailContacto;
+    public ContactoAgenda(String nombre, int numero, String email) {
+        this.nombre = nombre;
+        this.numero = numero;
+        this.email = email;
     }
+
     //endregion
 
     //region G y S
@@ -34,18 +36,18 @@ public class ContactoAgenda {
         return email;
     }
 
-    public void setNombreContacto(String nombreContacto) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public void setNumeroContacto(int numeroContacto) {
+    public void setNumero(int numero) {
         this.numero = numero;
     }
 
-    public void setEmailContacto(String emailContacto) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    //endregion
+//endregion
 
 }
