@@ -10,101 +10,121 @@ public class Gesion {
     private ArrayList<Producto> listaProductos = new ArrayList<>();
 
 
-    public void menuGestion(){
+    public void menuGestion() {
 
         int continuar = 1;
+        hardCodeo();
 
-        do{
+        do {
             System.out.println("Ingrese la opcion que desea:");
             System.out.println("1.Compra de producto.");
             System.out.println("2.Venta de producto.");
             System.out.println("3.Busqueda por ID de producto");
-            System.out.println("4.Salir.");
+            System.out.println("4.Mostrar lista productos.");
+            System.out.println("5.Salir.");
             int opcion = sc.nextInt();
 
-            switch (opcion){
+            switch (opcion) {
                 case 1 -> compraProductos();
                 case 2 -> ventaProducto();
                 case 3 -> busquedaProductoPorID();
-                case 4 -> continuar = 0;
+                case 4 -> mostrarLista();
+                case 5 -> continuar = 0;
             }
 
-        }while (continuar == 1);
+        } while (continuar == 1);
     }
 
     public void compraProductos() {
+
+        int flag = 0;
 
         System.out.print("Ingrese el nombre del producto que desea comprar: ");
         String producto = sc.next();
 
         for (Producto productoAux : listaProductos) {
             if (productoAux.getNombre().equals(producto)) {
+                flag = 1;
                 System.out.print("Ingrese cuanta cantidad desea comprar: ");
                 int compra = sc.nextInt();
 
-                int nuevoStock = productoAux.getStock() + compra;
-                productoAux.setStock(nuevoStock);
-            } else {
-                System.out.println("Dicho producto no existe en su posecion.");
+                productoAux.setStock(productoAux.getStock() + compra);
+                System.out.println("Compra exitosa.");
+                mostrarProducto(productoAux);
             }
+        }
+
+        if (flag == 0) {
+            System.out.println("Dicho producto no existe en su posecion.");
         }
     }
 
     public void ventaProducto() {
+        int flag = 0;
 
         System.out.print("Ingrese el nombre del producto que vendio: ");
         String producto = sc.next();
 
         for (Producto productoAux : listaProductos) {
             if (productoAux.getNombre().equals(producto)) {
+                flag = 1;
                 System.out.print("Ingrese cuanta cantidad vendio: ");
                 int venta = sc.nextInt();
 
-                int nuevoStock = productoAux.getStock() - venta;
-                productoAux.setStock(nuevoStock);
-            } else {
-                System.out.println("Dicho producto no existe en su posecion.");
+                productoAux.setStock(productoAux.getStock() - venta);
+                System.out.println("venta exitosa.");
+                mostrarProducto(productoAux);
             }
+        }
+
+        if (flag == 0) {
+            System.out.println("Dicho producto no existe en su posecion.");
         }
     }
 
-    public void busquedaProductoPorID (){
+    public void busquedaProductoPorID() {
 
         int flag = 0;
 
         System.out.println("Ingrese el ID del producto");
         int idProducto = sc.nextInt();
 
-        for (Producto productoAux : listaProductos){
-            if (productoAux.getCodigo() == idProducto)){
+        for (Producto productoAux : listaProductos) {
+            if (productoAux.getCodigo() == idProducto) {
                 mostrarProducto(productoAux);
                 flag = 1;
                 break;
             }
         }
-        if (flag == 0){
+        if (flag == 0) {
             System.out.println("El ID de producto no existe");
         }
     }
 
-    public void mostrarProducto (Producto productoAux){
+    public void mostrarProducto(Producto productoAux) {
         System.out.println("===============================");
         System.out.println("nombre: " + productoAux.getNombre());
         System.out.println("Descripcion: " + productoAux.getDescripcion());
         System.out.println("Stock: " + productoAux.getStock());
         System.out.println("ID: " + productoAux.getCodigo());
         System.out.println("Precio: $" + productoAux.getPrecio());
-        if(productoAux.getAñoVencimiento() < 2023){
+        if (productoAux.getAñoVencimiento() < 2023) {
             System.out.println("Producto: vencido");
         } else if (productoAux.getAñoVencimiento() == 2023) {
             System.out.println("Producto: Pronto a vencerse");
-        }else {
+        } else {
             System.out.println("Vencimiento: " + productoAux.getAñoVencimiento());
         }
         System.out.println("===============================");
     }
 
-    public void hardCodeo(){
+    public void mostrarLista (){
+        for (Producto productoAux : listaProductos){
+            mostrarProducto(productoAux);
+        }
+    }
+
+    public void hardCodeo() {
 
         Producto producto1 = new Producto("Papa", 1, "verdura", 30, 5, 2024);
         Producto producto2 = new Producto("Manteca", 2, "lacteo", 45, 140, 2022);

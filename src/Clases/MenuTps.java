@@ -16,6 +16,8 @@ public class MenuTps {
         System.out.println("Seleccione el Trabajo practico:");
         System.out.println("1. Tp1");
         System.out.println("2. Tp2");
+        System.out.println("3. Tp3");
+        System.out.println("4. Salir.");
 
         int opcion = scanner.nextInt();
 
@@ -27,20 +29,20 @@ public class MenuTps {
                 case 2:
                     menuTp2();
                     break;
+                case 3:
+                    break;
+                case 4:
+                    flag = 0;
+                    break;
                 default:
                     System.out.println("Opcion incorrecta");
                     break;
             }
-
-            System.out.println("Desea ver otro tp? 1.Si - 2.No");
-            flag = scanner.nextInt();
-
         } while (flag == 1);
         scanner.close();
     }
 
     //endregion
-
 
     //region tp1
     public void menutp1() {
@@ -85,6 +87,7 @@ public class MenuTps {
             System.out.println("Entre 19 y 50 años el salario es un 5 por ciento más");
             System.out.println("Entre 51 y 60 años el salario es un 10 por ciento más");
             System.out.println("Si es mayor de 60 el salario es un 15 por ciento más");
+            System.out.println("24.Salir.");
 
             //endregion
 
@@ -194,14 +197,14 @@ public class MenuTps {
                     calculoSalarioPorEdad();
                     break;
 
+                case 24:
+                    flag = 0;
+                    break;
+
                 default:
                     System.out.println("Opcion incorrecta");
                     break;
             }
-
-            System.out.println("Desea ver otro ejercicio? 1.Si - 2.No");
-            flag = scanner.nextInt();
-
         } while (flag == 1);
 
         scanner.close();
@@ -830,10 +833,10 @@ public class MenuTps {
 
     public void menuTp2() {
 
-        int ejercicio = 0;
-        int continuar = 0;
+        int flag = 1;
 
         Agenda agendita = new Agenda();
+        Gesion gestion = new Gesion();
 
         do {
 
@@ -843,14 +846,14 @@ public class MenuTps {
             System.out.println("1.Crea una clase CuentaBancaria con atributos saldo y titular. Debe tener métodos para depositar y retirar dinero de la cuenta y para consultar el saldo actual. Además, la clase debe permitir la posibilidad de establecer un plazo fijo. El método encargado debe mostrar cuánto quedaría el monto total con intereses que podremos retirar en 30 días.");
             System.out.println("2.Crea una clase Vuelo con atributos origen, destino, horaSalida y horaLlegada. La clase debe tener métodos para mostrar la información del vuelo y para calcular la duración del mismo.");
             System.out.println("3. rea una clase Agenda. Debe permitir que se agreguen, modifiquen y eliminen contactos. Cada contacto debe tener un nombre, un número de teléfono y una dirección de correo electrónico. Además, la aplicación debe tener una función de búsqueda que permita buscar contactos por nombre. Pista: Se debe utilizar más de una clase.");
-            System.out.println("4.Crea una clase Estudiante con atributos nombre, edad, materiasAprobadas (materia es otra clase con nombre, cargaHoraria y profesor. Este último como un String) y promedio. La clase debe permitir que se le agreguen nuevas");
             System.out.println("4.Crea una clase Estudiante con atributos nombre, edad, materiasAprobadas (materia es otra clase con nombre, cargaHoraria y profesor. Este último como un String) y promedio. La clase debe permitir que se le agreguen nuevas materias aprobadas y debe tener un método para calcular el promedio actual del estudiante.");
             System.out.println("5.Crea una clase Producto que tenga los atributos código, descripción, stock, precio y añoVencimiento. Luego crear una clase Gestión que posee una lista (arreglo) de productos. Con esta clase se debe poder comprar o vender productos, es decir, agregar o quitar del stock. También debe tener un método que busque al producto por su código y otro que avise si el producto está vencido o vence en este año. Aclaración: Como todavía no vimos persistencia de datos se deben “hardcodear” los productos y la lista de ellos dentro de la clase gestión.");
+            System.out.println("6.Salir.");
             //endregion
 
-            ejercicio = scanner.nextInt();
+           int opcion = scanner.nextInt();
 
-            switch (ejercicio) {
+            switch (opcion) {
                 case 1:
                     cuentaBancaria();
                     break;
@@ -864,15 +867,17 @@ public class MenuTps {
                     Estudiante estudianteAux = hardCodeoEstudiante();
                     estudianteAux.menuEstudiante();
                     break;
+                case 5:
+                    gestion.menuGestion();
+                    break;
+                case 6:
+                    flag = 0;
+                    break;
                 default:
                     System.out.println("Opcion incorrecta");
                     break;
             }
-
-            System.out.println("Desea realizar otro ejercicio? 1.Si 2.No");
-            continuar = scanner.nextInt();
-
-        } while (continuar == 1);
+        } while (flag == 1);
 
         scanner.close();
     }
@@ -960,6 +965,57 @@ public class MenuTps {
         return alumno;
     }
     //endregion
+
+    //endregion
+
+    //region tp3
+
+   public void  menuTP3(){
+
+        int flag = 1;
+
+        do{
+
+            System.out.println("1. Crea un programa que pida al usuario una fecha de nacimiento en formato dd/MM/yyyy y calcule su edad en años, meses y días.");
+            System.out.println("2. Crea un programa que pida al usuario una cadena de texto y determine si es un palíndromo (es decir, si se lee igual de izquierda a derecha que de derecha a izquierda).");
+            System.out.println("3. Crea un programa que pida al usuario una cadena de texto y determine cuántas veces aparece una subcadena específica en la cadena de texto.");
+            System.out.println("4. Crea un programa que pida al usuario una cadena de texto y la convierta en una cadena de camelCase. La cadena de texto tiene que separar cada palabra por un espacio.");
+            System.out.println("5. Crea un programa que genere un número aleatorio entre 1 y 100 y le pida al usuario que adivine el número. El programa debe indicar si el número del usuario es mayor o menor que el número generado y seguir pidiendo al usuario que adivine hasta que acierte. El usuario tiene oportunidades limitadas (a libre elección).");
+            System.out.println("6. Crea un programa que pida al usuario una cadena de texto y elimine todas las vocales de la cadena.");
+            System.out.println("7. Crea un programa que pida al usuario dos fechas en formato dd/MM/yyyy y  calcule la cantidad de días entre ambas fechas.");
+            System.out.println("8. Crea un programa que pida al usuario una cadena de texto dividida por  espacios y la convierta en una cadena de snake_case.");
+            System.out.println("9. Cree una aplicación con menú donde se puedan utilizar los métodos de la clase Math. Solo los métodos vistos en clase.");
+            System.out.println("10.Salir.");
+
+            int opcion = scanner.nextInt();
+
+            switch (opcion){
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    break;
+                case 8:
+                    break;
+                case 9:
+                    break;
+                case 10:
+                    flag = 0;
+                    break;
+            }
+
+        }while(flag == 1)
+
+   }
 
     //endregion
 
