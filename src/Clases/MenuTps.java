@@ -1,6 +1,16 @@
 import Clases.*;
 
+import javax.swing.text.DateFormatter;
+import java.io.CharArrayWriter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.random.*;
 
@@ -9,7 +19,7 @@ public class MenuTps {
     Scanner scanner = new Scanner(System.in);
 
     //region menu general
-    public void menuGeneral() {
+    public void menuGeneral() throws ParseException {
 
         int flag = 1;
 
@@ -30,6 +40,7 @@ public class MenuTps {
                     menuTp2();
                     break;
                 case 3:
+                    menuTP3();
                     break;
                 case 4:
                     flag = 0;
@@ -851,7 +862,7 @@ public class MenuTps {
             System.out.println("6.Salir.");
             //endregion
 
-           int opcion = scanner.nextInt();
+            int opcion = scanner.nextInt();
 
             switch (opcion) {
                 case 1:
@@ -950,7 +961,7 @@ public class MenuTps {
         nuevoViaje.calcularTiempoDeViaje();
     }
 
-    public Estudiante hardCodeoEstudiante(){
+    public Estudiante hardCodeoEstudiante() {
 
         Materia materia1 = new Materia("Lengua", 4, "Fernandez", 7);
         Materia materia2 = new Materia("Matematica", 2, "Mendez", 8);
@@ -970,12 +981,13 @@ public class MenuTps {
 
     //region tp3
 
-   public void  menuTP3(){
+    public void menuTP3() throws ParseException {
 
         int flag = 1;
 
-        do{
+        do {
 
+            //region consignas tp3
             System.out.println("1. Crea un programa que pida al usuario una fecha de nacimiento en formato dd/MM/yyyy y calcule su edad en años, meses y días.");
             System.out.println("2. Crea un programa que pida al usuario una cadena de texto y determine si es un palíndromo (es decir, si se lee igual de izquierda a derecha que de derecha a izquierda).");
             System.out.println("3. Crea un programa que pida al usuario una cadena de texto y determine cuántas veces aparece una subcadena específica en la cadena de texto.");
@@ -986,17 +998,22 @@ public class MenuTps {
             System.out.println("8. Crea un programa que pida al usuario una cadena de texto dividida por  espacios y la convierta en una cadena de snake_case.");
             System.out.println("9. Cree una aplicación con menú donde se puedan utilizar los métodos de la clase Math. Solo los métodos vistos en clase.");
             System.out.println("10.Salir.");
+            //endregion
 
             int opcion = scanner.nextInt();
 
-            switch (opcion){
+            switch (opcion) {
                 case 1:
+                    fechaNacimiento();
                     break;
                 case 2:
+                    palindromo();
                     break;
                 case 3:
+                    buscarSubCadena();
                     break;
                 case 4:
+                    textoACamelCase();
                     break;
                 case 5:
                     break;
@@ -1011,11 +1028,95 @@ public class MenuTps {
                 case 10:
                     flag = 0;
                     break;
+                default:
+                    System.out.println("opcion incorrecta");
+                    break;
             }
+        } while (flag == 1);
+    }
 
-        }while(flag == 1)
+    //region metodos tp3
 
-   }
+    public void fechaNacimiento(){
+
+       DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        System.out.print("Ingrese su fecha de nacimiento (utilize siguiente formato dd/MM/yyyy): ");
+        String fechaNacimientoUsuarioString = scanner.next();
+
+        LocalDate fechaNacimientoUsuario = LocalDate.parse(fechaNacimientoUsuarioString, formatoFecha);
+
+        LocalDate fechaHoy = LocalDate.now();
+
+        Period periodo = Period.between(fechaNacimientoUsuario, fechaHoy);
+
+        System.out.println("Tienes " + periodo.getYears() + " años, " + periodo.getMonths() + " meses y " + periodo.getDays() + " dias.");
+    }
+
+    public void palindromo(){
+
+        int flag = 1;
+
+        System.out.print("Ingrese la palabra: ");
+        String palabraUsuario = scanner.next();
+
+        palabraUsuario = palabraUsuario.replaceAll("\\s", "").toLowerCase();
+
+        for (int i=0; i<palabraUsuario.length()/2; i++){
+            if (palabraUsuario.charAt(i) != palabraUsuario.charAt(palabraUsuario.length() -i -1)){
+                flag = 0;
+                break;
+            }
+        }
+
+        if (flag == 1){
+            System.out.println("Su palabra " + palabraUsuario + " es palindromo.");
+        } else {
+            System.out.println("Su palabra " + palabraUsuario + " no es palindromo");
+        }
+    }
+
+    public void buscarSubCadena(){
+
+        int contador = 0;
+
+        System.out.println("Ingrese la cadena de texto: ");
+        String cadenaPrincipal = scanner.next();
+
+        System.out.println("Ingrese la subcadena que busca: ");
+        String subCadena = scanner.next();
+
+        int posicion = cadenaPrincipal.indexOf(subCadena);
+
+        while (posicion != -1){
+            contador++;
+            posicion = cadenaPrincipal.indexOf(subCadena, posicion+1);
+        }
+
+        System.out.println("En la cadena " + cadenaPrincipal + " se encontro " + subCadena + " " + contador + " veces.");
+    }
+
+public void textoACamelCase(){
+
+    System.out.print("Ingrese texto: ");
+    String textoUsuario = scanner.next();
+
+    String[] palabras = textoUsuario.split(" ");
+
+    String camelCase  = palabras[0].toLowerCase();
+
+    for (int i=0; i<palabras.length; i++) {
+        String primeraLetra = palabras[i].substring(0,1).toUpperCase();
+        String restoPalabra = palabras[i].substring(1).toLowerCase();
+        camelCase += primeraLetra + restoPalabra;
+    }
+
+    System.out.println("El texto en camelCase es: " + camelCase);
+}
+
+
+
+    //endregion
 
     //endregion
 
