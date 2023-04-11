@@ -27,7 +27,8 @@ public class MenuTps {
         System.out.println("1. Tp1");
         System.out.println("2. Tp2");
         System.out.println("3. Tp3");
-        System.out.println("4. Salir.");
+        System.out.println("4. Tp4");
+        System.out.println("5. Salir.");
 
         int opcion = scanner.nextInt();
 
@@ -43,6 +44,9 @@ public class MenuTps {
                     menuTP3();
                     break;
                 case 4:
+                    menuTP4();
+                    break;
+                case 5:
                     flag = 0;
                     break;
                 default:
@@ -979,9 +983,10 @@ public class MenuTps {
 
     //endregion
 
+    //terminar
     //region tp3
 
-    public void menuTP3() throws ParseException {
+    public void menuTP3() {
 
         int flag = 1;
 
@@ -1014,8 +1019,10 @@ public class MenuTps {
                     break;
                 case 4:
                     textoACamelCase();
+                    //problema con los espacios
                     break;
                 case 5:
+                    adivinaNumeroEn3Intentos();
                     break;
                 case 6:
                     break;
@@ -1037,9 +1044,9 @@ public class MenuTps {
 
     //region metodos tp3
 
-    public void fechaNacimiento(){
+    public void fechaNacimiento() {
 
-       DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         System.out.print("Ingrese su fecha de nacimiento (utilize siguiente formato dd/MM/yyyy): ");
         String fechaNacimientoUsuarioString = scanner.next();
@@ -1053,7 +1060,7 @@ public class MenuTps {
         System.out.println("Tienes " + periodo.getYears() + " años, " + periodo.getMonths() + " meses y " + periodo.getDays() + " dias.");
     }
 
-    public void palindromo(){
+    public void palindromo() {
 
         int flag = 1;
 
@@ -1062,21 +1069,21 @@ public class MenuTps {
 
         palabraUsuario = palabraUsuario.replaceAll("\\s", "").toLowerCase();
 
-        for (int i=0; i<palabraUsuario.length()/2; i++){
-            if (palabraUsuario.charAt(i) != palabraUsuario.charAt(palabraUsuario.length() -i -1)){
+        for (int i = 0; i < palabraUsuario.length() / 2; i++) {
+            if (palabraUsuario.charAt(i) != palabraUsuario.charAt(palabraUsuario.length() - i - 1)) {
                 flag = 0;
                 break;
             }
         }
 
-        if (flag == 1){
+        if (flag == 1) {
             System.out.println("Su palabra " + palabraUsuario + " es palindromo.");
         } else {
             System.out.println("Su palabra " + palabraUsuario + " no es palindromo");
         }
     }
 
-    public void buscarSubCadena(){
+    public void buscarSubCadena() {
 
         int contador = 0;
 
@@ -1088,37 +1095,105 @@ public class MenuTps {
 
         int posicion = cadenaPrincipal.indexOf(subCadena);
 
-        while (posicion != -1){
+        while (posicion != -1) {
             contador++;
-            posicion = cadenaPrincipal.indexOf(subCadena, posicion+1);
+            posicion = cadenaPrincipal.indexOf(subCadena, posicion + 1);
         }
 
         System.out.println("En la cadena " + cadenaPrincipal + " se encontro " + subCadena + " " + contador + " veces.");
     }
 
-public void textoACamelCase(){
+    public void textoACamelCase() {
 
-    System.out.print("Ingrese texto: ");
-    String textoUsuario = scanner.next();
+        String[] palabras = new String[100];
 
-    String[] palabras = textoUsuario.split(" ");
+        System.out.println("Ingrese texto: ");
+        String textoUsuario = scanner.nextLine();
 
-    String camelCase  = palabras[0].toLowerCase();
+        palabras = textoUsuario.split(" ");
 
-    for (int i=0; i<palabras.length; i++) {
-        String primeraLetra = palabras[i].substring(0,1).toUpperCase();
-        String restoPalabra = palabras[i].substring(1).toLowerCase();
-        camelCase += primeraLetra + restoPalabra;
+        String camelCase = palabras[0].toLowerCase();
+
+        for (int i = 0; i < palabras.length; i++) {
+            String primeraLetra = palabras[i].substring(0, 1).toUpperCase();
+            String restoPalabra = palabras[i].substring(1).toLowerCase();
+            camelCase += primeraLetra + restoPalabra;
+        }
+
+        System.out.println("El texto en camelCase es: " + camelCase);
     }
 
-    System.out.println("El texto en camelCase es: " + camelCase);
-}
+    public void adivinaNumeroEn3Intentos() {
+
+        int flag = 0;
+
+        Random numeroRandoAdivinar = new Random();
+        int numeroRandom = numeroRandoAdivinar.nextInt(1, 100);
+
+        for (int i = 0; i < 10; i++) {
+
+            System.out.print("Ingrese un numero del 1 al 100 para adivinar nuestro numero: ");
+            int numeroUsuario = scanner.nextInt();
+
+            if (numeroUsuario == numeroRandom) {
+                flag = 1;
+                break;
+            } else if (numeroRandom > numeroUsuario) {
+                System.out.println("El numero es mas grande");
+            } else {
+                System.out.println("El numero es mas chico");
+            }
+        }
+
+        if (flag == 1) {
+            System.out.println("Felicidades era el numero!!.");
+        } else {
+            System.out.println("Mas suerte para la proxima. :c");
+        }
+    }
 
 
+//endregion
 
-    //endregion
+//endregion
 
-    //endregion
+    //region tp4
+    public void menuTP4() {
+
+        int flag = 1;
+        MateriaTp4 materia = new MateriaTp4();
+        PersonajeTp4 personaje = new PersonajeTp4();
+
+        do {
+
+            //region consignas tp3
+            System.out.println("1. Crea una clase Persona que tenga tres atributos: nombre, edad y dni. Luego, crea dos subclases llamadas Estudiante y Profesor que hereden de Persona. Como básico la subclase Estudiante debe tener un atributo carrera y un método estudiar que imprima por pantalla un mensaje indicando que el estudiante está estudiando. La subclase Profesor debe tener un atributo materia y un método enseñar que imprima por pantalla un mensaje indicando que el profesor está enseñando. Una idea podría ser crear una clase Materia y relacionarla con los alumnos y profesores.");
+            System.out.println("2. Crea una jerarquía de clases para un videojuego. La clase base debe ser Personaje, que tiene atributos como vida y stamina. Luego, crea subclases para diferentes tipos de personajes, como Mago, Guerrero y Arquero. Cada subclase debe tener habilidades y atributos específicos para ese tipo de personaje. Una idea podría ser que haya un rango de probabilidades de cada personaje a la hora de realizar un ataque.");
+            System.out.println("3. Realizar un diagrama de clases UML para ambos puntos.");
+            System.out.println("4.Salir.");
+            //endregion
+
+            int opcion = scanner.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    materia.asignarNombres();
+                    materia.situacion();
+                    break;
+                case 2:
+                    personaje.creacionDePj();
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    flag = 0;
+                    break;
+                default:
+                    System.out.println("opcion incorrecta");
+                    break;
+            }
+        } while (flag == 1);
+    }
 
 
 }
