@@ -1,18 +1,18 @@
-import Clases.*;
+import Clases.Tp2.*;
+import Clases.Tp4.MateriaTp4;
+import Clases.Tp4.PersonajeTp4;
+import Clases.Tp5.Circulo;
+import Clases.Tp5.Coche;
+import Clases.Tp5.Moto;
+import Clases.Tp5.Rectangulo;
 
-import javax.swing.text.DateFormatter;
-import java.io.CharArrayWriter;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Scanner;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.random.*;
 
 public class MenuTps {
 
@@ -28,7 +28,8 @@ public class MenuTps {
         System.out.println("2. Tp2");
         System.out.println("3. Tp3");
         System.out.println("4. Tp4");
-        System.out.println("5. Salir.");
+        System.out.println("5. Tp5");
+        System.out.println("6. Salir.");
 
         int opcion = scanner.nextInt();
 
@@ -47,6 +48,9 @@ public class MenuTps {
                     menuTP4();
                     break;
                 case 5:
+                    menuTP5();
+                    break;
+                case 6:
                     flag = 0;
                     break;
                 default:
@@ -1166,7 +1170,7 @@ public class MenuTps {
 
         do {
 
-            //region consignas tp3
+            //region consignas tp4
             System.out.println("1. Crea una clase Persona que tenga tres atributos: nombre, edad y dni. Luego, crea dos subclases llamadas Estudiante y Profesor que hereden de Persona. Como básico la subclase Estudiante debe tener un atributo carrera y un método estudiar que imprima por pantalla un mensaje indicando que el estudiante está estudiando. La subclase Profesor debe tener un atributo materia y un método enseñar que imprima por pantalla un mensaje indicando que el profesor está enseñando. Una idea podría ser crear una clase Materia y relacionarla con los alumnos y profesores.");
             System.out.println("2. Crea una jerarquía de clases para un videojuego. La clase base debe ser Personaje, que tiene atributos como vida y stamina. Luego, crea subclases para diferentes tipos de personajes, como Mago, Guerrero y Arquero. Cada subclase debe tener habilidades y atributos específicos para ese tipo de personaje. Una idea podría ser que haya un rango de probabilidades de cada personaje a la hora de realizar un ataque.");
             System.out.println("3. Realizar un diagrama de clases UML para ambos puntos.");
@@ -1181,7 +1185,6 @@ public class MenuTps {
                     materia.situacion();
                     break;
                 case 2:
-                    personaje.creacionDePj();
                     break;
                 case 3:
                     break;
@@ -1194,7 +1197,99 @@ public class MenuTps {
             }
         } while (flag == 1);
     }
+    //terminar
 
+    //region tp5
+    public void menuTP5() {
+
+        int flag = 1;
+
+        do {
+            //region consignas tp5
+            System.out.println("1. Crea una clase abstracta llamada Vehiculo con los atributos marca, modelo y precio. Crea dos clases hijas llamadas Coche y Moto que extiendan la clase Vehiculo. En la clase Coche añade el atributo numPuertas y en la clase Moto añade el atributo cilindrada. Luego, crea una interfaz llamada Alquilable con un método calcularPrecioAlquiler() y haz que ambas clases hijas implementen esta interfaz.");
+            System.out.println("2. Crea una clase abstracta llamada FiguraGeometrica con un método abstracto llamado calcularArea(). Crea dos clases hijas llamadas Rectangulo y Circulo que extiendan la clase FiguraGeometrica. En la clase Rectangulo añade los atributos base y altura y en la clase Circulo añade el atributo radio. Implementa el método calcularArea() en ambas subclases.");
+            System.out.println("3. Crea una clase llamada Persona con los atributos nombre, edad y dni. Implementa la interfaz Comparable en la clase Persona para poder ordenar una lista de personas por edad.");
+            System.out.println("4. Crea una clase abstracta llamada Animal con los atributos nombre, edad y peso. Crea dos clases hijas llamadas Perro y Gato que extiendan la clase Animal. En la clase Perro añade el atributo raza y en la clase Gato añade el atributo pelaje (puede ser tanto su color como sus características). Implementa la interfaz Comparable en ambas clases hijas para poder ordenar una lista de animales por peso.");
+            System.out.println("5. Crea una clase abstracta llamada Empleado con los atributos nombre, edad y salario (si está el ejercicio 3 en el mismo archivo puede heredar de Persona). Agrega un método abstracto llamado calcularBonificacion() que calculará la bonificación del salario del empleado en función de su cargo. Luego, crea dos clases hijas llamadas Gerente y Secretario que extiendan la clase Empleado. En la clase Gerente añade el atributo departamento y en la clase Secretario en ambas clases hijas para calcular la bonificación correspondiente. Por último, crea una lista de objetos Empleado que incluya tanto gerentes como secretarios. Luego, recorre ambas listas y muestra por pantalla el nombre, salario y bonificación de cada empleado.");
+            System.out.println("6.Salir.");
+            //endregion
+
+            int opcion = scanner.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    pedirDiasUsuario();
+                    break;
+                case 2:
+                    areasDeFiguras();
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    flag = 0;
+                    break;
+                default:
+                    System.out.println("opcion incorrecta");
+                    break;
+            }
+        } while (flag == 1);
+
+    }
+    //endregion
+
+    //region metodos
+    public void pedirDiasUsuario() {
+
+        Coche auto = new Coche("Toyota", "2020", 400, 4);
+        Moto moto = new Moto("Totoro", "2021", 270, 200);
+        double precioAlquilerVehiculo = 0;
+        int flag = 0;
+
+        do {
+            System.out.print("Ingrese que vehiculo alquilara (Auto o Moto): ");
+            String vehiculo = scanner.next();
+
+            System.out.print("Cuantos dias lo alquilara?:");
+            int diasAlquiler = scanner.nextInt();
+
+            if (vehiculo.equals("Auto")) {
+                precioAlquilerVehiculo = auto.calcularPrecioAlquiler(diasAlquiler);
+                auto.mostrarVehiculo();
+                flag = 0;
+            } else if (vehiculo.equals("Moto")) {
+                precioAlquilerVehiculo = moto.calcularPrecioAlquiler(diasAlquiler);
+                moto.mostrarVehiculo();
+                flag = 0;
+            } else {
+                System.out.println("Ese vehiculo no tenemos.");
+                flag = 1;
+            }
+        } while (flag == 1);
+
+        System.out.println("Su alquiler es de: $" + precioAlquilerVehiculo);
+    }
+
+    public void areasDeFiguras(){
+
+        Circulo circulo = new Circulo(3.25f);
+        Rectangulo rectangulo = new Rectangulo(24f, 25f);
+
+        System.out.println("De que figura quiere el Area?");
+        String figuraUsuario = scanner.next();
+
+        switch (figuraUsuario){
+            case "Circulo" ->System.out.println("Su areas es: " + circulo.calcularArea());
+            case "Rectangulo" -> System.out.println("Si areas es: " + rectangulo.calcularArea());
+        }
+
+
+
+    }
+    //endregion
 
 }
 
