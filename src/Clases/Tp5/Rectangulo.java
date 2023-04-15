@@ -41,7 +41,7 @@ public class Rectangulo extends FiguraGeometrica {
 //region metodo
     @Override
     public float calcularArea() {
-        return this.altura * this.base;
+        return altura * base;
     }
     //endregion
 }

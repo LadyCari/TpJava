@@ -30,7 +30,7 @@ public class Circulo extends FiguraGeometrica{
 
     @Override
     public float calcularArea() {
-        return 3.14f * (this.radio * this.radio);
+        return 3.14f * (radio * radio);
     }
 
 

@@ -23,10 +23,10 @@ public class Coche extends Vehiculo implements Alquilable{
     public void mostrarVehiculo() {
         System.out.println("-------------------------------");
         System.out.println("| Vehiculo: Auto");
-        System.out.println("| Marca: " + this.marca);
-        System.out.println("| Modelo: "+ this.modelo);
-        System.out.println("| Puertas: " + this.numPuertas);
-        System.out.println("| Precio: $" + this.precio);
+        System.out.println("| Marca: " + marca);
+        System.out.println("| Modelo: "+ modelo);
+        System.out.println("| Puertas: " + numPuertas);
+        System.out.println("| Precio: $" + precio);
         System.out.println("-------------------------------");
     }
 

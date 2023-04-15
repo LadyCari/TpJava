@@ -1,10 +1,7 @@
 import Clases.Tp2.*;
 import Clases.Tp4.MateriaTp4;
 import Clases.Tp4.PersonajeTp4;
-import Clases.Tp5.Circulo;
-import Clases.Tp5.Coche;
-import Clases.Tp5.Moto;
-import Clases.Tp5.Rectangulo;
+import Clases.Tp5.*;
 
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -1199,6 +1196,8 @@ public class MenuTps {
     }
     //terminar
 
+    //endregion
+
     //region tp5
     public void menuTP5() {
 
@@ -1224,6 +1223,7 @@ public class MenuTps {
                     areasDeFiguras();
                     break;
                 case 3:
+                    OrdenarListas();
                     break;
                 case 4:
                     break;
@@ -1273,7 +1273,7 @@ public class MenuTps {
         System.out.println("Su alquiler es de: $" + precioAlquilerVehiculo);
     }
 
-    public void areasDeFiguras(){
+    public void areasDeFiguras() {
 
         Circulo circulo = new Circulo(3.25f);
         Rectangulo rectangulo = new Rectangulo(24f, 25f);
@@ -1281,14 +1281,71 @@ public class MenuTps {
         System.out.println("De que figura quiere el Area?");
         String figuraUsuario = scanner.next();
 
-        switch (figuraUsuario){
-            case "Circulo" ->System.out.println("Su areas es: " + circulo.calcularArea());
+        switch (figuraUsuario) {
+            case "Circulo" -> System.out.println("Su areas es: " + circulo.calcularArea());
             case "Rectangulo" -> System.out.println("Si areas es: " + rectangulo.calcularArea());
         }
 
 
+    }
+
+    public void OrdenarListas(){
+
+        //region lista
+        ArrayList<Persona> lista = new ArrayList<>();
+
+        Persona persona1 = new Persona("Carlos", 29, "1234");
+        Persona persona2 = new Persona("Maria", 60, "12345");
+        Persona persona3 = new Persona("Pepo", 18, "4321");
+
+        lista.add(persona1);
+        lista.add(persona2);
+        lista.add(persona3);
+        //endregion
+
+        ArrayList<Persona> listaOrdenada = pasarListaDesordenadaAListaOrdenada(lista);
+
+        mostrarLista(listaOrdenada);
 
     }
+
+    public ArrayList<Persona> pasarListaDesordenadaAListaOrdenada(ArrayList<Persona> lista) {
+
+        ArrayList<Persona> listaOrdenada = new ArrayList<>();
+
+        int menorEdad = 0;
+
+        while (!lista.isEmpty()) {
+
+            Persona personaAuxMenor = lista.get(0);
+
+            for (Persona o : lista) {
+                menorEdad = o.compareTo(personaAuxMenor);
+                if (personaAuxMenor.getEdad() > o.getEdad()) {
+                    personaAuxMenor = o;
+                }
+            }
+
+            listaOrdenada.add(personaAuxMenor);
+
+            for (Persona t : lista) {
+                if (t.getEdad() == menorEdad) {
+                    lista.remove(t);
+                    break;
+                }
+            }
+        }
+        return listaOrdenada;
+    }
+
+    public void mostrarLista (ArrayList<Persona> lista){
+
+        for (Persona o : lista){
+            System.out.println(o.toString());
+        }
+    }
+
+
     //endregion
 
 }
