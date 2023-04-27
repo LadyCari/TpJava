@@ -1226,8 +1226,10 @@ public class MenuTps {
                     OrdenarListas();
                     break;
                 case 4:
+                    hardcodeoAnimales();
                     break;
                 case 5:
+                    hardcodeoEmpleados();
                     break;
                 case 6:
                     flag = 0;
@@ -1303,12 +1305,13 @@ public class MenuTps {
         lista.add(persona3);
         //endregion
 
-        ArrayList<Persona> listaOrdenada = pasarListaDesordenadaAListaOrdenada(lista);
+        Collections.sort(lista);
 
-        mostrarLista(listaOrdenada);
+        mostrarLista(lista);
 
     }
 
+/*
     public ArrayList<Persona> pasarListaDesordenadaAListaOrdenada(ArrayList<Persona> lista) {
 
         ArrayList<Persona> listaOrdenada = new ArrayList<>();
@@ -1337,13 +1340,60 @@ public class MenuTps {
         }
         return listaOrdenada;
     }
-
+*/
     public void mostrarLista (ArrayList<Persona> lista){
 
         for (Persona o : lista){
             System.out.println(o.toString());
         }
     }
+
+    public void hardcodeoAnimales (){
+
+        List <Animal> listaAnimales = new ArrayList<Animal>();
+
+        Animal gato1 = new Gato("pepe",12, 6, "suave");
+        Animal gato2 = new Gato ("pipi", 11, 2, "moteado");
+        Animal perro1 = new Perro("more", 10, 9, "golden");
+        Animal perro2 = new Perro("felipe", 5, 4, "cusco");
+
+        listaAnimales.add(gato1);
+        listaAnimales.add(gato2);
+        listaAnimales.add(perro1);
+        listaAnimales.add(perro2);
+
+        Collections.sort(listaAnimales);
+
+        for (Animal o : listaAnimales){
+            System.out.println("--------------------------------");
+            System.out.println(o.toString());
+            System.out.println("--------------------------------");
+        }
+    }
+
+public void hardcodeoEmpleados (){
+
+        List <Empleado> listaEmpleados = new ArrayList<Empleado>();
+
+        Empleado persona1 = new Gerente("pablo", 20, 15000, 0,"A");
+    Empleado persona2 = new Gerente("pedro", 26, 27777, 0, "B");
+    Empleado persona3 = new Secretario("carlos", 30, 4000,0, 5);
+    Empleado persona4 = new Secretario("jimena", 23, 30000,0, 1);
+
+    listaEmpleados.add(persona1);
+    listaEmpleados.add(persona2);
+    listaEmpleados.add(persona3);
+    listaEmpleados.add(persona4);
+
+        for (Empleado objeto : listaEmpleados) {
+            objeto.calcularBonificacion();
+            System.out.println("---------------------");
+            System.out.println(objeto.toString());
+            System.out.println("---------------------");
+        }
+    }
+
+
 
 
     //endregion

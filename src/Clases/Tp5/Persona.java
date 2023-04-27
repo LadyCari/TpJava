@@ -49,7 +49,7 @@ public class Persona implements Comparable <Persona> {
 
     //endregion
 
-
+/*
     @Override
     public int compareTo(Persona persona2) {
         int menor;
@@ -58,6 +58,19 @@ public class Persona implements Comparable <Persona> {
             return this.edad;
         } else {
             return persona2.getEdad();
+        }
+    }
+*/
+
+    @Override
+    public int compareTo(Persona o) {
+
+        if (this.edad == o.getEdad()){
+            return 0;
+        } else if (this.edad < o.getEdad()) {
+            return -1;
+        }else {
+            return 1;
         }
     }
 
